@@ -56,6 +56,7 @@ table.dataTable tr.odd.obsolete td.sorting_2 { background-color: #ffffd1; }
 table.dataTable tr.even.obsolete td.sorting_1 { background-color: #ffffd5; }
 table.dataTable tr.even.obsolete td.sorting_2 { background-color: #ffffe2; }
 
+div.source > a { font-weight: bold; }
 .sources {
     -moz-border-radius: 5px 5px 5px 5px;
     -moz-box-shadow: 2px 2px 5px 2px #666666;

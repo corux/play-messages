@@ -2,6 +2,7 @@ package controllers.playmessages;
 
 import static play.data.Form.form;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -69,6 +70,22 @@ public class MessagesController extends Controller {
     public static Result datatableI18n() {
         return redirect(routes.Assets.at("javascripts/i18n/datatable/"
                 + lang().language() + ".js"));
+    }
+
+    /**
+     * Retrieves a plain file.
+     * 
+     * @param path
+     *            The file to retrieve.
+     * @return Result.
+     */
+    public static Result getFile(String path) {
+        File file = new File(path);
+        if (file.exists()) {
+            return ok(file);
+        } else {
+            return badRequest();
+        }
     }
 
     /**

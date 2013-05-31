@@ -2,11 +2,11 @@
 @if(model.getKeySourceList(key).listSourceFiles().size() > 0) {
     @for(source <- model.getKeySourceList(key).listSourceFiles()) {
         <div class="source">
-            <strong>@source.path</strong>
+            <a href="@routes.MessagesController.getFile(source.path)" target="_blank">@source.path</a>
             @for(snippet <- source.listSnippets()) {
                 <div class="code">@Html(snippet.snippet)</div>
             }
-        </div>        
+        </div>
     }
 } else {
     @Messages("sources.keynotfound", key)
