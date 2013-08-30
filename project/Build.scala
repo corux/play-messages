@@ -16,8 +16,6 @@ object ApplicationBuild extends Build {
   val main = play.Project(appName, appVersion, appDependencies).settings(
     organization := "de.corux",
 
-    scalacOptions ++= Seq("-feature"),
-
     // global template imports
     templatesImport += "controllers.playmessages.routes")
 
