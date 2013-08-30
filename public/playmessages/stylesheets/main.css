@@ -23,7 +23,7 @@ table.dataTable tr td:first-child { white-space: nowrap; }
 table.dataTable tr td:first-child * { display: inline-block; }
 table.dataTable img { height: 1em; }
 
-table.dataTable { border-collapse:collapse; border-spacing:0; }
+table.dataTable { border-spacing:0; }
 table.dataTable td.edit { min-width: 150px; }
 table.dataTable td.edit input { padding: 0px; width: 100%; height: 100%; }
 
@@ -55,6 +55,9 @@ table.dataTable tr.odd.obsolete td.sorting_1 { background-color: #ffffc4; }
 table.dataTable tr.odd.obsolete td.sorting_2 { background-color: #ffffd1; }
 table.dataTable tr.even.obsolete td.sorting_1 { background-color: #ffffd5; }
 table.dataTable tr.even.obsolete td.sorting_2 { background-color: #ffffe2; }
+
+table.dataTable td { border: 1px solid transparent; }
+table.dataTable td.focus { border: 1px solid blue; box-shadow: inset 0 0 4px black; border-radius: 4px; }
 
 div.source > a { font-weight: bold; }
 .sources {

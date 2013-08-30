@@ -18,10 +18,18 @@ function handleResult(result) {
 }
 
 function fnShowSources(key) {
-    $("#sources").dialog('open').dialog('option', {
+    $("#sources").dialog('option', {
         title: $("#sources").attr("name") + ' "'+key+'"',
-        maxHeight: 600
-    });
+        maxHeight: 600,
+        show: 250,
+        hide: 250,
+        open: function() {
+        	keys.block = true;
+        },
+        close: function() {
+            setTimeout( function () { keys.block = false; }, 0);
+        }
+    }).dialog('open');
     $("#sources-target")
         .html('<div class="loading"></div>')
         .load(jsRoutes.controllers.playmessages.MessagesController.sources(key).url);
@@ -92,7 +100,6 @@ function fnUnignore(key) {
 			$.each($(".notification-area tr"), function(index, value) {
 				oTable.fnAddTr(value);
 			});
-			makejEditable(oTable.$('td.edit'));
 		}
     });
 }

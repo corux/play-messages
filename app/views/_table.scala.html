@@ -16,17 +16,21 @@
 </div>
 <script type="text/javascript">
 
-function makejEditable(obj) {
+function makejEditable(obj, keys) {
     obj.editable(jsRoutes.controllers.playmessages.MessagesController.save().url, {
         //type: "textarea",
         //cancel: "Cancel",
         //submit: "Save",
-        //onblur: "ignore",
+        onblur: "cancel",
         indicator: "<div class='loading-small'></div>",
         intercept: function(result) {
             result = jQuery.parseJSON(result);
             handleResult(result);
             return result.value;
+        },
+        onreset: function() {
+            obj.editable('destroy');
+            setTimeout( function () { keys.block = false; }, 0);
         },
         callback: function(value, settings) {
             var td = $(this).closest("td");
@@ -42,6 +46,9 @@ function makejEditable(obj) {
             } else if (!tr.hasClass("new")) {
                 td.addClass("missing");
             }
+            
+            keys.block = false;
+            $(this).editable('destroy');
         },
         submitdata: function(value, settings) {
             var oTable = $('#table').dataTable();
@@ -57,7 +64,7 @@ function makejEditable(obj) {
         width: "100%"
     });
 }
-
+var keys;
 $(document).ready(function() {
     var oTable = $('#table').dataTable({
         oLanguage: {
@@ -74,6 +81,18 @@ $(document).ready(function() {
     new FixedHeader(oTable, {
         //left: true
     });
-    makejEditable(oTable.$('td.edit'));
+    keys = new KeyTable({
+        "table": $('#table').get(0),
+        "datatable": oTable
+    });
+    keys.event.action(null, null, function(nCell) {
+        if ($(nCell).hasClass("edit")) {
+	        keys.block = true;
+	        makejEditable($(nCell), keys);
+	        setTimeout( function () { $(nCell).click(); }, 0 );
+        } else if($(nCell).find(".ui-icon-search")) {
+            $(nCell).find(".ui-icon-search").click();
+        }
+    });
 });
 </script>
