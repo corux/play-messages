@@ -82,6 +82,7 @@ public class MessagesController extends Controller {
     public static Result getFile(String path) {
         File file = new File(path);
         if (file.exists()) {
+            response().setContentType("text/plain");
             return ok(file);
         } else {
             return badRequest();
