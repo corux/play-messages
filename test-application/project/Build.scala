@@ -11,13 +11,13 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     
-    "de.corux" %% "play-messages" % "2.0"
+    "de.corux" %% "play-messages" % "2.0.3-SNAPSHOT"
   )
   
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here
     resolvers += "corux-releases" at "http://tomcat.corux.de/nexus/content/repositories/releases/",
-    resolvers += "corux-snapshots" at "http://tomcat.corux.de/nexus/content/repositories/snaphots/"
+    resolvers += "corux-snapshots" at "http://tomcat.corux.de/nexus/content/repositories/snapshots/"
   )
 
 }
