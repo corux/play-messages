@@ -183,7 +183,9 @@ public class MessagesController extends Controller {
     public static Result save() {
         Localization model = form(Localization.class).bindFromRequest().get();
         ValueModel response = new ValueModel();
-        response.notification = new Notification();
+        Notification n = new Notification();
+        response.notification = n;
+
         boolean restore = false;
         MessagesResource messagesResource = MessagesResource.instance();
         if (!StringUtils.isBlank(model.key)
@@ -192,21 +194,20 @@ public class MessagesController extends Controller {
             try {
                 messagesResource.save(model.locale, model.key, model.value);
                 response.value = model.value;
-                response.notification.notificationType = "success";
-                response.notification.message = Messages.get("save.success",
-                        model.key, model.locale);
+                n.notificationType = "success";
+                n.message = Messages.get("save.success", model.key,
+                        model.locale);
             } catch (Exception e) {
-                response.notification.message = Messages.get("save.error",
-                        model.key, model.locale, e.getMessage());
-                response.notification.notificationType = "error";
+                n.message = Messages.get("save.error", model.key, model.locale,
+                        e.getMessage());
+                n.notificationType = "error";
 
                 restore = true;
             }
         } else {
             restore = true;
-            response.notification.notificationType = "alert";
-            response.notification.message = Messages.get("save.novalue",
-                    model.key, model.locale);
+            n.notificationType = "alert";
+            n.message = Messages.get("save.novalue", model.key, model.locale);
         }
 
         if (restore) {
