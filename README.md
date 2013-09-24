@@ -3,7 +3,7 @@ Play Messages Module
 
 This module gives you a tool for localizing your application.
 
-Tested with play 2.1.1 on windows and linux.
+Tested with play 2.1 and 2.2 on windows and linux.
 
 ## Features
 - Web based tool for localizing your application
@@ -17,9 +17,15 @@ Tested with play 2.1.1 on windows and linux.
 
 ## Usage
 
-Add the module dependency to your application `Build.scala`
+Add the module dependency to your application `Build.scala`.
 
-    "de.corux" %% "play-messages" % "[2.0,)"
+For play 2.1:
+
+    "de.corux" %% "play-messages" % "2.0.2-SNAPSHOT"
+
+And for play 2.2:
+
+    "de.corux" %% "play-messages" % "2.0.3-SNAPSHOT"
 
 Add the module to the `routes`
 
