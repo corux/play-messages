@@ -1,14 +1,11 @@
 package controllers.playmessages;
 
-import controllers.AssetsBuilder;
-import play.api.mvc.*;
+import play.api.mvc.Action;
+import play.api.mvc.AnyContent;
 
 public class Assets {
 
     public static Action<AnyContent> at(String path, String file) {
-        return controllers.Assets.at(path, file);
-        //return delegate.at(path, file);
+        return controllers.Assets.at(path, file, true);
     }
-
-    private static controllers.AssetsBuilder delegate = new controllers.AssetsBuilder();
 }
